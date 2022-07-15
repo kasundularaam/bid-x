@@ -246,14 +246,10 @@ ul {
 
 .section {
   padding: 2rem 0;
-  width: 90vw;
-  max-width: var(--max-width);
   margin: 0 auto;
 }
 
 .navbar {
-  width: 90vw;
-  max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
   gap: 1rem;
@@ -278,4 +274,42 @@ ul {
 .product img {
   width: 200px;
   height: 200px;
+}
+
+.container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: var(--dark-3);
+  border-radius: var(--borderRadius);
+  margin: auto;
+  border: 1px solid var(--light-4);
+}
+
+.round_img{
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;}
+
+.Row {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.orgCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 1rem;
+  background: var(--dark-3);
+  border-radius: var(--borderRadius);
+  border: 1px solid var(--light-4);
 }
