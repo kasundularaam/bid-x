@@ -9,7 +9,6 @@ const Home = ({ user }) => {
         <OrgCard />
         <OrgCard />
         <OrgCard />
-        <OrgCard />
       </div>
     </section>
   );
