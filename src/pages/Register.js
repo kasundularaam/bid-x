@@ -1,64 +1,85 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
+
 const Register = ({ setUser }) => {
+  const url = "http://localhost:8000/api/v1/users/register";
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
+  const registerUser = async () => {
+    try {
+      const { data } = await axios.post(url, {
+        name: name,
+        email: email,
+        password: password,
+      });
+      setUser(data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!name || !email || !password) return;
-    setUser({ name: name, email: email, password: password });
-    navigate("/");
+    registerUser();
   };
 
   return (
     <section className="section">
       <form className="form" onSubmit={handleSubmit}>
-        <h5>Register</h5>
-        <div className="form-row">
-          <label htmlFor="name" className="form-label">
-            name
-          </label>
+        <h2>register</h2>
+        <div className="Input">
           <input
             type="text"
-            className="form-input"
             id="name"
+            className="Input-text"
+            placeholder="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
-        </div>
-        <div className="form-row">
-          <label htmlFor="email" className="form-label">
-            email
+          <label for="input" className="Input-label">
+            Name
           </label>
+        </div>
+        <div className="Input">
           <input
             type="email"
-            className="form-input"
             id="email"
+            className="Input-text"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-        </div>
-        <div className="form-row">
-          <label htmlFor="password" className="form-label">
-            password
+          <label for="input" className="Input-label">
+            Email
           </label>
+        </div>
+        <div className="Input">
           <input
             type="password"
-            className="form-input"
             id="password"
+            className="Input-text"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <label for="input" className="Input-label">
+            Password
+          </label>
         </div>
-        <button type="submit" className="btn btn-block">
-          register
+        <button type="submit" className="btn">
+          Register
         </button>
-        <Link to={"/login"} className="link">
-          login
+        <p>If you already have an account</p>
+        <Link to={`/login`} className="link">
+          Login
         </Link>
       </form>
     </section>

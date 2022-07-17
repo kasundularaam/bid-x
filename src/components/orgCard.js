@@ -1,10 +1,10 @@
 import React from "react";
 
-const orgCard = () => {
+const orgCard = ({ org }) => {
   return (
     <div className="orgCard">
-      <img src="https://i.imgur.com/jPXJiFj.png" alt="" className="round_img" />
-      <div>Google LLC</div>
+      <img src={org.logo} alt="" className="round_img" />
+      <div>{org.name}</div>
     </div>
   );
 };
