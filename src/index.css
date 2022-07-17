@@ -147,7 +147,6 @@ ul {
 
 .btn {
   display: block;
-  margin: auto;
   background-color: var(--primary-2);
   border-radius: 0.25rem;
   border: none;
@@ -384,4 +383,41 @@ ul {
     transform var(--inputTransitionDuration),
     visibility 0ms,
     z-index 0ms;
+}
+
+.newsCard{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 1rem;
+  background: var(--dark-3);
+  border-radius: var(--borderRadius);
+  border: 1px solid var(--light-4);
+}
+
+.newsCardHead{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.newsCard img{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+.newsCard button{
+  align-self: flex-end;
+  font-size: 0.8rem;
+  padding: var(--gutterSm) var(--gutterMd);
+}
+
+.newsCard p{
+  overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 4;
+           line-clamp: 4; 
+   -webkit-box-orient: vertical;
 }

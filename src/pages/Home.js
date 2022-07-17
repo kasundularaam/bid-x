@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import NewsCard from "../components/NewsCard";
 
 import OrgCard from "../components/orgCard";
 
@@ -28,6 +29,14 @@ const Home = ({ user }) => {
         {organizations.map((org) => {
           return <OrgCard key={org._id} org={org} />;
         })}
+      </div>
+      <h4>News</h4>
+      <div className="vSpace10" />
+      <div className="Row">
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
+        <NewsCard />
       </div>
     </section>
   );
