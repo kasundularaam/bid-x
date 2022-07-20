@@ -7,6 +7,8 @@ const Login = ({ setUser }) => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const loginUser = async () => {
@@ -18,7 +20,7 @@ const Login = ({ setUser }) => {
       setUser(data);
       navigate("/");
     } catch (error) {
-      console.log(error);
+      setError(error.message);
     }
   };
 
@@ -30,47 +32,51 @@ const Login = ({ setUser }) => {
   };
 
   return (
-    <section className="section">
-      <form className="form" onSubmit={handleSubmit}>
-        <h2>login</h2>
+    <>
+      {error && <div className="errorBar">{error}</div>}
 
-        <div className="Input">
-          <input
-            type="email"
-            id="email"
-            className="Input-text"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <label for="input" className="Input-label">
-            Email
-          </label>
-        </div>
+      <section className="section">
+        <form className="form" onSubmit={handleSubmit}>
+          <h2>login</h2>
 
-        <div className="Input">
-          <input
-            type="password"
-            id="password"
-            className="Input-text"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label for="input" className="Input-label">
-            Password
-          </label>
-        </div>
+          <div className="Input">
+            <input
+              type="email"
+              id="email"
+              className="Input-text"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label htmlFor="input" className="Input-label">
+              Email
+            </label>
+          </div>
 
-        <button type="submit" className="btn">
-          login
-        </button>
-        <p>If you don't have an account</p>
-        <Link to={`/register`} className="link">
-          Register
-        </Link>
-      </form>
-    </section>
+          <div className="Input">
+            <input
+              type="password"
+              id="password"
+              className="Input-text"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label htmlFor="input" className="Input-label">
+              Password
+            </label>
+          </div>
+
+          <button type="submit" className="btn">
+            login
+          </button>
+          <p>If you don't have an account</p>
+          <Link to={`/register`} className="link">
+            Register
+          </Link>
+        </form>
+      </section>
+    </>
   );
 };
 export default Login;

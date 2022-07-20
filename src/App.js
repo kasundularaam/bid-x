@@ -7,7 +7,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Register from "./pages/Register";
 import Stocks from "./pages/Stocks";
-import Stock from "./pages/Stock";
+import Organization from "./pages/Organization";
 import ReadNews from "./pages/ReadNews";
 import News from "./pages/News";
 function App() {
@@ -30,9 +30,9 @@ function App() {
           }
         >
           <Route index element={<Home user={user} />} />
-          <Route path="stocks">
+          <Route path="organizations">
             <Route index element={<Stocks />} />
-            <Route path=":stockId" element={<Stock />} />
+            <Route path=":orgId" element={<Organization user={user} />} />
           </Route>
           <Route path="news">
             <Route index element={<News />} />

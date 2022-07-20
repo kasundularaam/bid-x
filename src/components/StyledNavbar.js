@@ -6,24 +6,21 @@ const Navbar = () => {
       <NavLink to="/">
         <img src={logo} alt="" />
       </NavLink>
-      <NavLink
-        to="/"
-        className={({ isActive }) => (isActive ? "link active" : "link")}
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="stocks"
-        className={({ isActive }) => (isActive ? "link active" : "link")}
-      >
-        Stocks
-      </NavLink>
-      <NavLink
-        to="/login"
-        className={({ isActive }) => (isActive ? "link active" : "link")}
-      >
-        Sign out
-      </NavLink>
+      <div className="textLinks">
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "link active" : "link")}
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          to="/login"
+          className={({ isActive }) => (isActive ? "link active" : "link")}
+        >
+          Sign out
+        </NavLink>
+      </div>
     </nav>
   );
 };
