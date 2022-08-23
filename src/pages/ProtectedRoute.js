@@ -1,9 +1,16 @@
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ children, user }) => {
+const AuthRoute = ({ children, user }) => {
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/auth/login" />;
   }
   return children;
 };
-export default ProtectedRoute;
+
+const NoAuthRoute = ({ children, user }) => {
+  if (user) {
+    return <Navigate to="/" />;
+  }
+  return children;
+};
+export { AuthRoute, NoAuthRoute };

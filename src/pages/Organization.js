@@ -40,14 +40,14 @@ const Organization = ({ user }) => {
         </div>
       </section>
       <div className="stock">
-        {stockState === 0 && <ActiveStock orgId={org._id} user={user} />}
-        {stockState === 1 && (
-          <EndedStock
+        {stockState === 0 && (
+          <ActiveStock
             orgId={org._id}
-            userId={user._id}
+            user={user}
             setStockState={setStockState}
           />
         )}
+        {stockState === 1 && <EndedStock orgId={org._id} userId={user._id} />}
         {stockState === 2 && <NoStock />}
       </div>
       <section className="newsSection">

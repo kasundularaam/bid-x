@@ -1,11 +1,18 @@
 import { Outlet } from "react-router-dom";
 import StyledNavbar from "../components/StyledNavbar";
-const SharedLayout = () => {
+const AuthSharedLayout = ({ setUser }) => {
   return (
     <>
-      <StyledNavbar />
+      <StyledNavbar setUser={setUser} />
       <Outlet />
     </>
   );
 };
-export default SharedLayout;
+const NoAuthSharedLayout = () => {
+  return (
+    <>
+      <Outlet />
+    </>
+  );
+};
+export { AuthSharedLayout, NoAuthSharedLayout };

@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logo.png";
-const Navbar = () => {
+const Navbar = ({ setUser }) => {
   return (
     <nav className="navbar">
       <NavLink to="/">
@@ -17,6 +17,7 @@ const Navbar = () => {
         <NavLink
           to="/login"
           className={({ isActive }) => (isActive ? "link active" : "link")}
+          onClick={() => setUser(null)}
         >
           Sign out
         </NavLink>

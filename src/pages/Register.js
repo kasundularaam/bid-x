@@ -78,7 +78,7 @@ const Register = ({ setUser }) => {
           Register
         </button>
         <p>If you already have an account</p>
-        <Link to={`/login`} className="link">
+        <Link to={"/auth/login"} className="link">
           Login
         </Link>
       </form>

@@ -1,6 +1,8 @@
 import axios from "axios";
-
 import { useEffect, useState } from "react";
+import io from "socket.io-client";
+
+const socket = io("http://localhost:8001");
 
 function ActiveStock({ orgId, user, setStockState }) {
   const url = `http://localhost:8000/api/v1/stocks/${orgId}`;
@@ -10,7 +12,7 @@ function ActiveStock({ orgId, user, setStockState }) {
   const [timeLeft, setTimeLeft] = useState("");
   const [bidPrice, setBidPrice] = useState(0);
 
-  const contDown = (endTime) => {
+  const countDown = (endTime) => {
     var x = setInterval(function () {
       const now = new Date().getTime();
 
@@ -33,43 +35,40 @@ function ActiveStock({ orgId, user, setStockState }) {
     }, 1000);
   };
 
-  const updateBidPrice = () => {
-    setInterval(function () {
-      loadBidPrice();
-    }, 300);
-  };
-
-  const loadBidPrice = async () => {
-    try {
-      const { data } = await axios.get(url);
-      setBidPrice(data.bidPrice);
-    } catch (error) {
-      setError(error.message);
-    }
-  };
-
   const loadStock = async () => {
     try {
       const { data } = await axios.get(url);
       setStock(data);
-      contDown(data.endTimeStamp);
+      countDown(data.endTimeStamp);
+      setBidPrice(data.bidPrice);
     } catch (error) {
       setError(error.message);
     }
   };
   const newBid = async () => {
     try {
-      if (bid && stock.basePrice < bid && stock.bidPrice < bid) {
+      if (bid && stock.basePrice < bid && bidPrice < bid) {
         const { data } = await axios.patch(url, {
           winner: user.name,
           bidPrice: bid,
         });
+        socket.emit("bid", { orgId: data._id, bidPrice: data.bidPrice });
         setBid("");
       }
     } catch (error) {
       setError(error.message);
     }
   };
+
+  const updateBidPrice = () => {
+    socket.on("connection", () => {});
+    socket.on("bid", (socketData) => {
+      if (socketData.orgId === orgId) {
+        setBidPrice(socketData.bidPrice);
+      }
+    });
+  };
+
   useEffect(() => {
     loadStock();
     updateBidPrice();

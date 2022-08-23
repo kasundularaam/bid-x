@@ -71,7 +71,7 @@ const Login = ({ setUser }) => {
             login
           </button>
           <p>If you don't have an account</p>
-          <Link to={`/register`} className="link">
+          <Link to={"/auth/register"} className="link">
             Register
           </Link>
         </form>
